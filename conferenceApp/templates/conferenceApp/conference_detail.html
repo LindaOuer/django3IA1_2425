@@ -1,0 +1,36 @@
+<h1>Conference Title: {{conference.title}}</h1>
+
+<a href="{% url 'conference_list' %}"> Back To List </a>
+<br>
+<br>
+
+<a href="{% url 'conference_update' conference.id %}">Update</a>
+
+<hr />
+
+<p><strong>Description:</strong> {{ conference.description }}</p>
+<p><strong>Satrt Date:</strong> {{ conference.start_date }}</p>
+<p><strong>End Date:</strong> {{ conference.end_date }}</p>
+<p><strong>Location:</strong> {{ conference.location }}</p>
+<p><strong>Price:</strong> {{ conference.price }} €</p>
+<p><strong>Capacity:</strong> {{ conference.capacity }}</p>
+<p>
+    <strong>Program:</strong>
+    <a href="{{ conference.program.url }}">Download</a>
+</p>
+<p><strong>Category:</strong> {{ conference.category.title }}</p>
+
+<h3>Reservations:</h3>
+<ul>
+    {% for reservation in reservations %}
+    <li>
+        {{ reservation.participant.username }} - {{ reservation.reservation_date
+        }} 
+        {% if reservation.confirmed %} (Confirmed) 
+        {% else %} (Pending) 
+        {% endif %}
+    </li>
+    {% empty %}
+    <li>No reservations found.</li>
+    {% endfor %}
+</ul>

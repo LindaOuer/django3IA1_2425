@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <a href="{% url 'conference_create' %}" >Add Conference
+    </a>
+        <br>
+        <hr>
+        <br>
+        <h1>Conference List</h1>
+
+        <table border="1">
+            <tr>
+                <td>Id</td>
+                <td>Title</td>
+                <td>Description</td>
+                <td>Start Date</td>
+                <td>End Date</td>
+                <td>Location</td>
+                <td>Price</td>
+                <td>Capacity</td>
+                <td>Category</td>
+                <td>Details</td>
+            </tr>
+            {# this is a comment #} {% for conf in list %}
+            <tr>
+                <td>{{ conf.id }}</td>
+                <td>{{ conf.title }}</td>
+                <td>{{ conf.description }}</td>
+                <td>{{ conf.start_date }}</td>
+                <td>{{ conf.end_date }}</td>
+                <td>{{ conf.location }}</td>
+                <td>{{ conf.price }}</td>
+                <td>{{ conf.capacity }}</td>
+                <td>{{ conf.category }}</td>
+                <td>
+                    <a href="{% url 'conference_details' conf.id %}"
+                        >Check Details
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
