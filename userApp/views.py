@@ -23,7 +23,7 @@ class CustomLogoutView(LogoutView):
 
 @login_required(login_url="login")
 def reserve_conference(req,conference_id):
-    user=req.participant
+    user=req.user
     conference = get_object_or_404(Conference, id=conference_id)
     if Reservation.objects.filter(participant=user,conference=conference).count() ==0:
         res=Reservation.objects.create(participant=user,conference=conference)
